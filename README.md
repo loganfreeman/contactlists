@@ -8,6 +8,32 @@ Instructions
 ```
 TOKEN=xxxxxxxxxxxxxxx
 ```
+
+use [webpack-dotenv-plugin](https://github.com/nwinch/webpack-dotenv-plugin) to replace token in source file
+
+Externally set environment variables will override vars set in .env
+
+```javascript
+// webpack.config.js
+const DotenvPlugin = require('webpack-dotenv-plugin');
+
+module.exports = {
+  ...
+  plugins: [
+    new DotenvPlugin({
+      sample: './.env.default',
+      path: './.env'
+    })
+  ]
+  ...
+};
+```
+
+in `src/redux/modules/helper.js`
+```
+const TOKEN = process.env.TOKEN;
+```
+
 2. then
 run
 ```
